@@ -41,6 +41,14 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [Display(Name = "Name")]
+            public string Name { get; set; }
+
+            [Required]
+            [Display(Name = "Surname")]
+            public string Surname { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -55,6 +63,11 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+
+            [Display(Name = "Subscribe?")]
+            public bool isSubscriber { get; set; }
+
         }
 
         public void OnGet(string returnUrl = null)
@@ -67,7 +80,7 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = Input.Email, Email = Input.Email };
+                var user = new User { UserName = Input.Email, Email = Input.Email, Name=Input.Name, Surname=Input.Surname, IsSubscriber = Input.isSubscriber, IsBanned=false};
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {

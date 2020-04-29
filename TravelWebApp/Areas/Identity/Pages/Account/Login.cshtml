@@ -1,82 +1,82 @@
 ﻿@page
 @model LoginModel
 
-@{
-    ViewData["Title"] = "Log in";
-}
+<!DOCTYPE html>
+<html lang="zxx">
 
-<h2>@ViewData["Title"]</h2>
-<div class="row">
-    <div class="col-md-4">
-        <section>
+<head>
+
+    <title>Вход</title>
+
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="Odyssey a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //Meta-Tags -->
+    <!-- Custom-Stylesheet-Links -->
+    <!-- Bootstrap-CSS -->
+    <link rel="stylesheet" href="css/bootstrap.css" type="text/css" media="all">
+    <!-- Index-Page-CSS -->
+    <link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+    <!-- Owl-Carousel-CSS -->
+    <link rel="stylesheet" href="css/owl.carousel.css" type="text/css" media="all">
+    <!-- Date-Picker-CSS -->
+    <link rel="stylesheet" href="css/jquery-ui.css" type="text/css" media="all">
+    <!-- Chocolat-CSS -->
+    <link rel="stylesheet" href="css/chocolat.css" type="text/css" media="all">
+    <!-- //Custom-Stylesheet-Links -->
+
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css" media="all">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css" media="all">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/font-awesome.css" type="text/css" media="all">
+    <!-- TTF -->
+    <link rel="stylesheet" href="fonts/fontawesome-webfont.ttf" type="text/css" media="all">
+    <script src="js/modernizr.js"></script>
+    <style type="text/css">
+        input::placeholder {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="agileheader" id="agileitshome">
+        <div class="w3lsnavigation">
+            <nav class="navbar navbar-default agilehovereffect wthreehovereffect">
+
+
+                <div class="collapse navbar-collapse navbar-right" id="bs-example-navbar-collapse-1">
+                    <nav class="link-effect-2" id="link-effect-2">
+                        <ul class="nav navbar-nav">
+                            <li><a class="scroll" href="/Identity/Account/Login"><span>ВХОД</span></a></li>
+                            <li><a class="scroll" href="/Identity/Account/Register"><span>РЕГИСТРАЦИЯ</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div class="agilecontactw3ls" id="agilecontactw3ls" style="width: 100%; height: 100vh">
+        <div class="container">
+            <h3>Вход</h3>
             <form method="post">
-                <h4>Use a local account to log in.</h4>
-                <hr />
-                <div asp-validation-summary="All" class="text-danger"></div>
-                <div class="form-group">
-                    <label asp-for="Input.Email"></label>
-                    <input asp-for="Input.Email" class="form-control" />
+                <div class="col-md-6 agilecontactw3ls-grid agilecontactw3ls-grid-1" style="left: 25%">
+                    <input asp-for="Input.Email" placeholder="Электронный адрес" required="">
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
-                </div>
-                <div class="form-group">
-                    <label asp-for="Input.Password"></label>
-                    <input asp-for="Input.Password" class="form-control" />
+                    <input asp-for="Input.Password" placeholder="Пароль" required="">
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
+                    <input type="submit" value="Войти" style="font-size: 30px; color: white; background: center;">
                 </div>
-                <div class="form-group">
-                    <div class="checkbox">
-                        <label asp-for="Input.RememberMe">
-                            <input asp-for="Input.RememberMe" />
-                            @Html.DisplayNameFor(m => m.Input.RememberMe)
-                        </label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-default">Log in</button>
-                </div>
-                <div class="form-group">
-                    <p>
-                        <a asp-page="./ForgotPassword">Forgot your password?</a>
-                    </p>
-                    <p>
-                        <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
-                    </p>
-                </div>
+                <div class="clearfix"></div>
             </form>
-        </section>
+        </div>
     </div>
-    <div class="col-md-6 col-md-offset-2">
-        <section>
-            <h4>Use another service to log in.</h4>
-            <hr />
-            @{
-                if ((Model.ExternalLogins?.Count ?? 0) == 0)
-                {
-                    <div>
-                        <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
-                        </p>
-                    </div>
-                }
-                else
-                {
-                    <form asp-page="./ExternalLogin" asp-route-returnUrl="@Model.ReturnUrl" method="post" class="form-horizontal">
-                        <div>
-                            <p>
-                                @foreach (var provider in Model.ExternalLogins)
-                                {
-                                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                                }
-                            </p>
-                        </div>
-                    </form>
-                }
-            }
-        </section>
-    </div>
-</div>
 
+</body>
+
+</html>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
