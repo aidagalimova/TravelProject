@@ -6,9 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="AspectInjector" Version="2.3.1" />
+    <PackageReference Include="Json.Net" Version="1.0.22" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.1.2" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.10" />
+    <PackageReference Include="MongoDB.Driver" Version="2.10.3" />
+    <PackageReference Include="MongoDB.Driver.GridFS" Version="2.10.3" />
   </ItemGroup>
 
   <ItemGroup>

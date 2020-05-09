@@ -11,7 +11,10 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using TravelWebApp.Data;
+using TravelWebApp.MongoModels;
+using TravelWebApp.Services;
 
 namespace TravelWebApp
 {
@@ -37,6 +40,11 @@ namespace TravelWebApp
             services.AddDbContext<ApplicationContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("ApplicationContext")));
 
+
+            services.Configure<TravelDatabaseSettings>(Configuration.GetSection(nameof(TravelDatabaseSettings)));
+            services.AddSingleton<ITravelDatabaseSettings>(sp => sp.GetRequiredService<IOptions<TravelDatabaseSettings>>().Value);
+            services.AddSingleton<TravelService>();
+            services.AddSingleton<YandexApiService>();
           services.AddDefaultIdentity<Models.User>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
             //services.AddIdentity<Models.User, IdentityRole>()
