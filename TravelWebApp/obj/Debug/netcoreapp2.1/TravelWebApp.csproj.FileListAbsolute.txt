@@ -13,10 +13,7 @@ C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\TravelWebApp.TagHelpers.input.cache
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\TravelWebApp.TagHelpers.output.cache
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\TravelWebApp.RazorCoreGenerate.cache
-C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\About.cshtml.g.cs
-C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\Contact.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\Index.cshtml.g.cs
-C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Home\Privacy.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\Error.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_CookieConsentPartial.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_Layout.cshtml.g.cs
@@ -42,3 +39,9 @@ C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\TravelWebApp.csproj.CoreCompileInputs.cache
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Profile\Details.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Index.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Users.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Cities.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\AddCity.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Route\SearchRoute.cshtml.g.cs

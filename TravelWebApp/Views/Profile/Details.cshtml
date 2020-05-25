@@ -1,0 +1,200 @@
+﻿@model TravelWebApp.Controllers.User_Rate
+@{
+    ViewData["Title"] = Model.User.Name;
+}
+
+
+
+
+
+<!-- Header -->
+<div class="agileheader" id="agileitshome">
+
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+        <nav class="navbar-default agilehovereffect wthreehovereffect">
+            <div class="navbar-header navbar-left">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-nav-left" id="bs-example-navbar-collapse-1" style="float: right!important">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav-right">
+                        <li><a class="scroll" href="/Route/SearchRoute"><span>НАЙТИ МАРШРУТ</span></a></li>
+                        <li><a class="scroll" href="#wthreereviews"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
+                        <li style="float: left; margin-top: 4%;">
+                            <form action="/search/" target="_blank" class="form-search">
+                                <input type="search" name="text" id="mysearch" placeholder="Поиск города" style="color: white">
+                            </form>
+                            <div id="result-search" class="search_result"></div>
+                        </li>
+                        <li><a class="scroll" href="/Identity/Account/Logout"><span>ВЫЙТИ</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+    <!-- //Navigation -->
+    <!-- //Slider -->
+
+</div>
+<!-- //Header -->
+<!-- About -->
+<div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh; background: linear-gradient(#6e94bb, #994fc7);">
+    <div class="container">
+        <div style="width: 30%; float: left;"><h2 style="text-align: left;">@Model.User.Name @Model.User.Surname</h2><img src="images/profile.png" style="width: 80%"></div>
+        <div class="w3lsaboutaits-grids">
+            <div class="col-md-6 w3lsaboutaits-grid w3lsaboutaits-grid-2" style="float: right; width: 60%; top:64px">
+                <h2 style="text-align: left;">Посещенные города:</h2>
+				@foreach (var city_rating in @Model.Ratings)
+                {
+                <div id="reviewStars-input">
+                    <table>
+                        <tr>
+                            <th style="width: 90%">
+                                <p style="font-size: 30px;">@city_rating.City.Name (@city_rating.City.Country.Name)</p>
+                            </th>
+                        </tr>
+                        <tr>
+                            @if (city_rating != null && city_rating.Mark == 5)
+                            {
+                                <input id="star-4" type="radio" name="reviewStars" checked onclick="AJAXstar(5,city_rating.City.Id)" />
+                            }
+                            else
+                            {
+                                <input id="star-4" type="radio" name="reviewStars" onclick="AJAXstar(4,city_rating.City.Id)" />
+                            }
+                            <label title="gorgeous" for="star-4"></label>
+                            @if (city_rating != null && city_rating.Mark == 4)
+                            {
+                                <input id="star-3" type="radio" name="reviewStars" checked onclick="AJAXstar(4,city_rating.City.Id)" />
+
+                            }
+                            else
+                            {
+                                <input id="star-3" type="radio" name="reviewStars" onclick="AJAXstar(4,city_rating.City.Id)" />
+
+                            }
+                            <label title="good" for="star-3"></label>
+                            @if (city_rating != null && city_rating.Mark == 3)
+                            {
+                                <input id="star-2" type="radio" name="reviewStars" checked onclick="AJAXstar(3,city_rating.City.Id)" />
+
+                            }
+                            else
+                            {
+                                <input id="star-2" type="radio" name="reviewStars" onclick="AJAXstar(3,city_rating.City.Id)" />
+
+                            }
+                            <label title="regular" for="star-2"></label>
+                            @if (city_rating != null && city_rating.Mark == 2)
+                            {
+                                <input id="star-1" type="radio" name="reviewStars" checked onclick="AJAXstar(2,city_rating.City.Id)" />
+                            }
+                            else
+                            {
+                                <input id="star-1" type="radio" name="reviewStars" onclick="AJAXstar(2,city_rating.City.Id)" />
+
+                            }
+                            <label title="poor" for="star-1"></label>
+                            @if (city_rating != null && city_rating.Mark == 1)
+                            {
+                                <input id="star-0" type="radio" name="reviewStars" checked onclick="AJAXstar(1,city_rating.City.Id)" />
+                            }
+                            else
+                            {
+                                <input id="star-0" type="radio" name="reviewStars" onclick="AJAXstar(1,city_rating.City.Id)" />
+
+                            }
+                            <label title="bad" for="star-0"></label>
+                        </tr>
+                    </table>
+                </div>
+                }
+            </div>
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</div>
+<!-- //About -->
+<!-- Custom-JavaScript-File-Links -->
+<!-- Default-JavaScript -->
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+
+
+<script>
+				$(document).ready(function() {
+					$("#owl-demo, #owl-demo1, #owl-demo2, #owl-demo3, #owl-demo4").owlCarousel({
+						autoPlay: 4000,
+						items : 3,
+						itemsDesktop : [568,2],
+						itemsDesktopSmall : [414,1]
+					});
+				});
+</script>
+<!-- //Owl-Carousel-JavaScript -->
+<!-- Pricing-Popup-Box-JavaScript -->
+<script>
+        function AJAXstar(count, cityId) {
+        sendAjaxPostRequest("@Url.Action("AddRating","Cities")", count, cityId)
+    }
+    function sendAjaxPostRequest(url, mark, cityId) {
+        $.post(url + '?mark=' + mark + '&cityId=' + cityId,
+            function (returnedData) {
+                console.log(returnedData);
+            });
+    }
+</script>
+<!-- //Pricing-Popup-Box-JavaScript -->
+<!-- Date-Picker-JavaScript -->
+<script src="js/jquery-ui.js"></script>
+<script>
+				$(function() {
+					$( "#datepicker,#datepicker1,#datepicker2" ).datepicker();
+				});
+</script>
+<!-- //Date-Picker-JavaScript -->
+<!-- Portfolio-Popup-Box-JavaScript -->
+<script src="js/jquery.chocolat.js"></script>
+<script type="text/javascript">
+				$(function() {
+					$('.w3portfolioaits-item a').Chocolat();
+				});
+</script>
+
+
+<script type="text/javascript">
+				$(document).ready(function() {
+					var defaults = {
+						containerID: 'toTop',
+						containerHoverID: 'toTopHover',
+						scrollSpeed: 100,
+						easingType: 'linear',
+					};
+                });
+
+    $('#mysearch').on('keyup', function () {
+        var text = $(this).val();
+        $('#result-search').html('');
+        if (text.length > 2) {
+            $.post("@Url.Action("SearchCity","Cities")" + "?text=" + text,
+                function (returnedData) {
+                    result = ''
+                    console.log(returnedData)
+                    for (var c of returnedData) {
+                        var t = '<a href="/Cities/Details/' + c.id + '">' + c.name + ' ' + c.country.name + '</a><br>';
+                        result += t;
+                    }
+                    $('#result-search').html(result);
+                });
+        }
+    })
+</script>
+<a href="#agileitshome" id="toTop" class="stuoyal3w scroll stieliga" style="display: block;"> <span id="toTopHover" style="opacity: 0;"> </span></a>
+<!-- //Slide-To-Top JavaScript -->
+<!-- //Custom-JavaScript-File-Links -->

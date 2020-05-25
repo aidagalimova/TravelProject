@@ -1,74 +1,153 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - TravelWebApp</title>
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <title>@ViewData["Title"] - Сайт путешественника</title>
 
-    <environment include="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment exclude="Development">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <!-- Meta-Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="keywords" content="Odyssey a Responsive Web Template, Bootstrap Web Templates, Flat Web Templates, Android Compatible Web Template, Smartphone Compatible Web Template, Free Webdesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola Web Design">
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- //Meta-Tags -->
+    <!-- Custom-Stylesheet-Links -->
+    <!-- Bootstrap-CSS -->
+    <link rel="stylesheet" href="~/css/bootstrap.css" type="text/css" media="all">
+    <!-- Index-Page-CSS -->
+    <link rel="stylesheet" href="~/css/style.css" type="text/css" media="all">
+    <!-- Owl-Carousel-CSS -->
+    <link rel="stylesheet" href="~/css/owl.carousel.css" type="text/css" media="all">
+    <!-- Date-Picker-CSS -->
+    <link rel="stylesheet" href="~/css/jquery-ui.css" type="text/css" media="all">
+    <!-- Chocolat-CSS -->
+    <link rel="stylesheet" href="~/css/chocolat.css" type="text/css" media="all">
+    <!-- //Custom-Stylesheet-Links -->
+    <!-- Fonts -->
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Montserrat:400,700" type="text/css" media="all">
+    <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:100,300,400,500" type="text/css" media="all">
+    <!-- //Fonts -->
+    <!-- Font-Awesome-File-Links -->
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/font-awesome.css" type="text/css" media="all">
+    <!-- TTF -->
+    <link rel="stylesheet" href="~/fonts/fontawesome-webfont.ttf" type="text/css" media="all">
+    <!-- //Font-Awesome-File-Links -->
+    <!-- Supportive-JavaScript -->
+    <script src="~/js/modernizr.js"></script>
+    <!-- //Supportive-JavaScript -->
+    <style type="text/css">
+        #reviewStars-input input:checked ~ label, #reviewStars-input label, #reviewStars-input label:hover, #reviewStars-input label:hover ~ label {
+            background: url('http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png') no-repeat;
+        }
+
+        #reviewStars-input {
+            /*fix floating problems*/
+            overflow: hidden;
+            *zoom: 1;
+            /*end of fix floating problems*/
+            position: relative;
+            float: left;
+        }
+
+            #reviewStars-input input {
+                filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=0);
+                opacity: 0;
+                width: 43px;
+                height: 40px;
+                position: absolute;
+                top: 0;
+                z-index: 0;
+            }
+
+                #reviewStars-input input:checked ~ label {
+                    background-position: 0 -40px;
+                    height: 40px;
+                    width: 43px;
+                }
+
+            #reviewStars-input label {
+                background-position: 0 0;
+                height: 40px;
+                width: 43px;
+                float: right;
+                cursor: pointer;
+                margin-right: 10px;
+                position: relative;
+                z-index: 1;
+            }
+
+                #reviewStars-input label:hover, #reviewStars-input label:hover ~ label {
+                    background-position: 0 -40px;
+                    height: 40px;
+                    width: 43px;
+                }
+
+            #reviewStars-input #star-0 {
+                left: 0px;
+            }
+
+            #reviewStars-input #star-1 {
+                left: 53px;
+            }
+
+            #reviewStars-input #star-2 {
+                left: 106px;
+            }
+
+            #reviewStars-input #star-3 {
+                left: 159px;
+            }
+
+            #reviewStars-input #star-4 {
+                left: 212px;
+            }
+
+            #reviewStars-input #star-5 {
+                left: 265px;
+            }
+
+        .form-search {
+            display: inline-block;
+            border-bottom: 1px solid;
+        }
+
+            .form-search input {
+                all: unset;
+                color: white;
+            }
+
+        ::placeholder {
+            color: white;
+            opacity: 1;
+        }
+
+
+        .form-control-feedback {
+            position: absolute;
+            z-index: 2;
+            display: block;
+            width: 2.375rem;
+            height: 2.375rem;
+            line-height: 2.375rem;
+            text-align: center;
+            pointer-events: none;
+            color: #aaa;
+        }
+        .search-result{
+            position: absolute;
+            top: 100%;
+            left: 0;
+            border: 1px solid #ddd;
+            background: #fff;
+            padding: 10px;
+            z-index: 999;
+            box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+        }
+    </style>
 </head>
+<!-- //Head -->
+<!-- Body -->
 <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">TravelWebApp</a>
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li><a asp-area="" asp-controller="Home" asp-action="Index">Home</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
-                    <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
-    <partial name="_CookieConsentPartial" />
-
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; 2020 - TravelWebApp</p>
-        </footer>
-    </div>
-
-    <environment include="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment exclude="Development">
-        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery"
-                crossorigin="anonymous"
-                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
-        </script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous"
-                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-    @RenderSection("Scripts", required: false)
+    @RenderBody()
 </body>
 </html>

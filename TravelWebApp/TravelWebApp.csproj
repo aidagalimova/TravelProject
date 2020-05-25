@@ -5,6 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\Новая папка1\**" />
+    <Content Remove="wwwroot\Новая папка1\**" />
+    <EmbeddedResource Remove="wwwroot\Новая папка1\**" />
+    <None Remove="wwwroot\Новая папка1\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="Views\Cities\Details.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AspectInjector" Version="2.3.1" />
     <PackageReference Include="Json.Net" Version="1.0.22" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
@@ -16,6 +27,29 @@
 
   <ItemGroup>
     <Folder Include="Areas\Identity\Services\" />
+    <Folder Include="wwwroot\Cities\Новая папка\" />
+    <Folder Include="wwwroot\Identity\Account\img\" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Cities\Details.cshtml" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.svg" />
+    <None Include="wwwroot\fonts\fontawesome-webfont.woff2" />
+    <None Include="wwwroot\js\bootstrap.js" />
+    <None Include="wwwroot\js\bootstrap.min.js" />
+    <None Include="wwwroot\js\classie.js" />
+    <None Include="wwwroot\js\grid3d.js" />
+    <None Include="wwwroot\js\helper.js" />
+    <None Include="wwwroot\js\jquery-2.1.4.min.js" />
+    <None Include="wwwroot\js\jquery-ui.js" />
+    <None Include="wwwroot\js\jquery.chocolat.js" />
+    <None Include="wwwroot\js\jquery.magnific-popup.js" />
+    <None Include="wwwroot\js\main.js" />
+    <None Include="wwwroot\js\modernizr.js" />
+    <None Include="wwwroot\js\owl.carousel.js" />
+    <None Include="wwwroot\js\responsiveslides.min.js" />
+  </ItemGroup>
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>

@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewData["Title"] = "Добавить город";
+}
+
+
+<div class="agileheader" id="agileitshome">
+
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+        <nav class="navbar-default agilehovereffect wthreehovereffect">
+            <div class="navbar-header navbar-left">
+                <li><a class="scroll" href=""><span>ПРОФИЛЬ</span></a></li>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-nav-left" id="bs-example-navbar-collapse-1" style="float: right!important">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav-right">
+                        <li><a class="scroll" href="/Identity/Account/Logout"><span>ВЫЙТИ</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</div>
+
+
+<div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh;">
+    <div class="container" style="text-align: -webkit-center;">
+        <h2>Добавить город</h2>
+        <form id="=cityForm" asp-action="AddCity" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Country">Страна</label>
+                <select id="Country" name="CountryId" onchange="GetRegions(this.value)" style="width: 300px"> </select>
+            </div>
+            <div class="form-group">
+                <label for="Region">Регион</label>
+                <select id="Region" onchange='GetCities(this.value)' style="width: 300px"></select>
+            </div>
+            <div class="form-group">
+                <label for="City">Город </label>
+                <select id="City" required name="CityId" onchange="GetButton()" style="width: 300px"></select>
+            </div>
+            <div>
+                <textarea placeholder="Описание" name="Description" style="width:60%; height: 150px;background: #7283b3; border-color: #213f5d; color: white;font-size: 20px;"></textarea>
+                <input type="file" name="Upload" required>
+            </div>
+            <br>
+            <br>
+            <input type="text" name="Longitude" placeholder="Широта" style="background: #7283b3; color: white;">
+            <input type="text" name="Latitude" placeholder="Долгота" style="background: #7283b3; color: white">
+            <br>
+            <div id="but" >
+                <button type="submit" class="btn btn-dark" style="width: 30%; width: 30%;background-color: #7283b3; color: white;border: 2px solid #213f5d;font-size: 26px;">Добавить город</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<script>
+        window.onload = function () {
+            $.post("@Url.Action("GetCountries","Admin")",
+                function (returnedData) {
+                    result = '';
+                    for (var country of returnedData) {
+                        result += "<option value="+country['id']+">"+country['title']+"</option>"
+                    }
+                    $("#Country").html(result)
+                });
+        }
+
+    function GetRegions(countryId) {
+        $("#Region").html('');
+        $("#City").html('');
+
+            $.post("@Url.Action("GetRegions","Admin")" + "?countryId=" + countryId,
+                function (returnedData) {
+                    result = ''
+                    for (var region of returnedData) {
+                        result += "<option value="+region['id']+">"+region['title']+"</option>"
+                    }
+                    $("#Region").html(result);
+                });
+        }
+
+    function GetCities(regionId) {
+                $("#City").html('');
+                $.post("@Url.Action("GetCities","Admin")" + "?regionId=" + regionId,
+                function (returnedData) {
+                    result = ""
+                    for (var city of returnedData) {
+                        result += "<option value="+city['id']+">"+city['title']+"</option>"
+                    }
+                    $("#City").html(result);
+                });
+        }
+    function GetButton() {
+
+    }
+
+</script>

@@ -158,11 +158,15 @@ namespace TravelWebApp.Migrations
 
                     b.Property<string>("Description");
 
+                    b.Property<string>("Image");
+
                     b.Property<double>("Latitude");
 
                     b.Property<double>("Longitude");
 
                     b.Property<string>("Name");
+
+                    b.Property<string>("YandexCode");
 
                     b.HasKey("Id");
 

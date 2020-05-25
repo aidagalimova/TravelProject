@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
 using TravelWebApp.Models;
+using TravelWebApp.Data;
 
 namespace TravelWebApp.Areas.Identity.Pages.Account
 {
@@ -18,9 +19,11 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
     {
         private readonly SignInManager<User> _signInManager;
         private readonly ILogger<LoginModel> _logger;
+        private readonly ApplicationContext _context;
 
-        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger)
+        public LoginModel(SignInManager<User> signInManager, ILogger<LoginModel> logger, ApplicationContext context)
         {
+            _context = context;
             _signInManager = signInManager;
             _logger = logger;
         }
@@ -68,21 +71,35 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
 
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
-            returnUrl = returnUrl ?? Url.Content("~/");
+            returnUrl = Url.Content("~/Profile/Details/");
 
             if (ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+
                 var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
+                    var user = _context.Users.Where(u => u.Email.Equals(Input.Email)).Single(); // where db is ApplicationDbContext instance
+                    var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
+                    {
+                        IsEssential = true
+                    };
+                    if (Input.Email == "admin@mail.ru")
+                    {
+                        Response.Cookies.Append("admin", user.Id.ToString(), cookieOptions);
+                        _logger.LogInformation("Admin logged in.");
+                        returnUrl = Url.Content("~/Admin/Index");
+                        return LocalRedirect(returnUrl);
+                    }
+                    Response.Cookies.Append("UserId", user.Id.ToString(), cookieOptions);
                     _logger.LogInformation("User logged in.");
-                    return LocalRedirect(returnUrl);
+                    return LocalRedirect(returnUrl + user.Id);
                 }
                 if (result.RequiresTwoFactor)
                 {
-                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = returnUrl, RememberMe = Input.RememberMe });
+                    return RedirectToPage("./LoginWith2fa", new { ReturnUrl = "~/", RememberMe = Input.RememberMe });
                 }
                 if (result.IsLockedOut)
                 {

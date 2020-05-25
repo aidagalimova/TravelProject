@@ -34,6 +34,14 @@ namespace TravelWebApp.Controllers
         public IActionResult Index()
 
         {
+            //foreach(var cmongo in _travelService.GetCountries())
+            //{
+            //    var c = new Models.Country();
+            //    c.Name = cmongo.Title;
+            //    c.Code = cmongo.Codes[0].Yandex_code;
+            //    _applicationContext.Add(c);
+            //}
+            //_applicationContext.SaveChanges();
             //var answer = "";
             //var request = System.Net.WebRequest.Create("https://api.rasp.yandex.net/v3.0/stations_list/?apikey=1a54691b-37d6-4213-ad2c-90d1c5a2a7e7&lang=ru_RU&format=json");
             //using (System.Net.WebResponse response = request.GetResponse())

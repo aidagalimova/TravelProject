@@ -1,0 +1,165 @@
+﻿@model TravelWebApp.Models.CityRating
+@{
+    ViewData["Title"] = @Html.DisplayFor(model => model.City.Name);
+}
+
+
+
+<!-- Header -->
+<div class="agileheader" id="agileitshome">
+
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+        <nav class="navbar-default agilehovereffect wthreehovereffect">
+            <div class="navbar-header navbar-left">
+                <li><a class="scroll" href=""><span>ПРОФИЛЬ</span></a></li>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-nav-left" id="bs-example-navbar-collapse-1" style="float: right!important">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav-right">
+                    
+                        <li><a class="scroll" href="/Route/SearchRoute"><span>НАЙТИ МАРШРУТ</span></a></li>
+                        <li><a class="scroll" href="#wthreereviews"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
+                        <li style="float: left; margin-top: 4%;">
+                            <form action="/search/" target="_blank" class="form-search">
+                                <input type="search" name="text" id="mysearch" placeholder="Поиск города" style="color: white">
+                            </form>
+                            <div id="result-search" class="search_result"></div>
+                        </li>
+                        <li><a class="scroll" href="/Identity/Account/Logout"><span>ВЫЙТИ</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+    <!-- //Navigation -->
+</div>
+
+<!-- Details -->
+<div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh;">
+    <div class="container">
+
+        <div class="col-md-12 agileinfodetails-grid agileinfodetails-heading">
+            <h5 style="width: 100%; text-align: center; font-size: 26px; color:white;">@Html.DisplayFor(model => model.City.Name) (@Html.DisplayFor(model => model.City.Country.Name))</h5><hr>
+        </div>
+        <div class="col-md-12 agileinfodetails-grid agileinfodetails-heading">
+            <div id="reviewStars-input" style="width: 33%; float: right;">
+                @if (Model.City.Image == null)
+                {
+                    <img src="img/(1).jpg">
+                }
+                else
+                {
+                    <img src="img/@Model.City.Image">
+
+                }
+                @if (Model.Rating != null && Model.Rating.Mark == 5)
+                {
+                    <input id="star-4" type="radio" name="reviewStars" checked onclick="AJAXstar(5,@Model.City.Id)" />
+                }
+                else
+                {
+                    <input id="star-4" type="radio" name="reviewStars" onclick="AJAXstar(4,@Model.City.Id)" />
+                }
+                <label title="gorgeous" for="star-4"></label>
+                @if (Model.Rating != null && Model.Rating.Mark == 4)
+                {
+                    <input id="star-3" type="radio" name="reviewStars" checked onclick="AJAXstar(4,@Model.City.Id)" />
+
+                }
+                else
+                {
+                    <input id="star-3" type="radio" name="reviewStars" onclick="AJAXstar(4,@Model.City.Id)" />
+
+                }
+                <label title="good" for="star-3"></label>
+                @if (Model.Rating != null && Model.Rating.Mark == 3)
+                {
+                    <input id="star-2" type="radio" name="reviewStars" checked onclick="AJAXstar(3,@Model.City.Id)" />
+
+                }
+                else
+                {
+                    <input id="star-2" type="radio" name="reviewStars" onclick="AJAXstar(3,@Model.City.Id)" />
+
+                }
+                <label title="regular" for="star-2"></label>
+                @if (Model.Rating != null && Model.Rating.Mark == 2)
+                {
+                    <input id="star-1" type="radio" name="reviewStars" checked onclick="AJAXstar(2,@Model.City.Id)" />
+                }
+                else
+                {
+                    <input id="star-1" type="radio" name="reviewStars" onclick="AJAXstar(2,@Model.City.Id)" />
+
+                }
+                <label title="poor" for="star-1"></label>
+                @if (Model.Rating != null && Model.Rating.Mark == 1)
+                {
+                    <input id="star-0" type="radio" name="reviewStars" checked onclick="AJAXstar(1,@Model.City.Id)" />
+                }
+                else
+                {
+                    <input id="star-0" type="radio" name="reviewStars" onclick="AJAXstar(1,@Model.City.Id)" />
+
+                }
+                <label title="bad" for="star-0"></label>
+            </div>
+            <p style="width: 67%; font-size: 22px; float: left; color: white; height: 34vh;">@Html.DisplayFor(model => model.City.Description)</p><br><hr>
+            <div id="map" style=" width: 67%; position: relative; overflow: hidden; height: 40vh;"></div>
+        </div>
+        <div class="clearfix">
+        </div>
+    </div>
+</div>
+
+
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+<script type="text/javascript">
+	google.maps.event.addDomListener(window, 'load', init);
+	function init() {
+		var mapOptions = {
+			zoom: 11,
+            center: new google.maps.LatLng(@Model.City.Latitude.ToString().Replace(",", "."), @Model.City.Longitude.ToString().Replace(",", "."))
+		};
+		var mapElement = document.getElementById('map');
+		var map = new google.maps.Map(mapElement, mapOptions);
+		var marker = new google.maps.Marker({
+            position: new google.maps.LatLng(@Model.City.Latitude.ToString().Replace(",", "."), @Model.City.Longitude.ToString().Replace(",", ".")),
+			map: map,
+		});
+	}
+    function AJAXstar(count, cityId) {
+        sendAjaxPostRequest("@Url.Action("AddRating","Cities")", count, cityId)
+    }
+    function sendAjaxPostRequest(url, mark, cityId) {
+        $.post(url + '?mark=' + mark + '&cityId=' + cityId,
+            function (returnedData) {
+                console.log(returnedData);
+            });
+    }
+        $('#mysearch').on('keyup', function () {
+        var text = $(this).val();
+        $('#result-search').html('');
+        if (text.length > 2) {
+            $.post("@Url.Action("SearchCity","Cities")" + "?text=" + text,
+                function (returnedData) {
+                    result = ''
+                    console.log(returnedData)
+                    for (var c of returnedData) {
+                        var t = '<a href="/Cities/Details/' + c.id + '">' + c.name + ' ' + c.country.name + '</a><br>';
+                        result += t;
+                    }
+                    $('#result-search').html(result);
+                });
+        }
+    })
+</script>

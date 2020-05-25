@@ -1,0 +1,59 @@
+﻿@model IEnumerable<TravelWebApp.Models.City>
+
+@{
+    ViewData["Title"] = "Города";
+}
+
+
+<div class="agileheader" id="agileitshome">
+
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+        <nav class="navbar-default agilehovereffect wthreehovereffect">
+            <div class="navbar-header navbar-left">
+                <li><a class="scroll" href=""><span>ПРОФИЛЬ</span></a></li>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-nav-left" id="bs-example-navbar-collapse-1" style="float: right!important">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav-right">
+                        <li><a class="scroll" href="/Identity/Account/Logout"><span>ВЫЙТИ</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+</div>
+<div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh;">
+    <div class="container">
+        <h2>Города</h2>
+        <div style="text-align: end;">
+            <a asp-action="AddCity" style="color: white;  border: 3px solid white;padding: 10px 10px;"><span>Добавить город</span></a>
+        </div>
+        <br>
+        <div>
+            <table class="table" style="color: white; font-size: 40px;">
+                <thead class="thead-dark">
+                    <th>Название города</th>
+                    <th>Страна</th>
+                </thead>
+                    <tbody>
+                        @foreach (var item in Model) {
+
+                        <tr>
+                            <th>@item.Name</th>
+                            <th>@item.Country.Name</th>
+                            
+                        </tr>
+                        }
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>

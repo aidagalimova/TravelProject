@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.Logging;
 using TravelWebApp.Models;
 
@@ -97,7 +98,7 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
                         $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
 
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return LocalRedirect(returnUrl);
+                    return new RedirectToRouteResult(new RouteValueDictionary(new { area = "Identity", page = "/Account/Login" }));
                 }
                 foreach (var error in result.Errors)
                 {

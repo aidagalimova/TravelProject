@@ -1,0 +1,94 @@
+﻿@model TravelWebApp.Controllers.UserListModel
+
+
+@{
+    ViewData["Title"] = "Пользователи";
+}
+
+<!-- Header -->
+<div class="agileheader" id="agileitshome">
+
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+        <nav class="navbar-default agilehovereffect wthreehovereffect">
+            <div class="navbar-header navbar-left">
+                <li><a class="scroll" href=""><span>ПРОФИЛЬ</span></a></li>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-nav-left" id="bs-example-navbar-collapse-1" style="float: right!important">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav-right">
+                        <li><a class="scroll" href="/Identity/Account/Logout"><span>ВЫЙТИ</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+    <!-- //Navigation -->
+    <!-- //Slider -->
+
+</div>
+<!-- //Header -->
+<!-- Details -->
+<div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh;">
+    <div class="container">
+        <table class="table" style="color: white;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Имя</th>
+                    <th scope="col">Почта</th>
+                    <th scope="col">Подписан на рассылку?</th>
+                    <th scope="col">Раз(-За)блокировать</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var user in Model.users)
+                {
+                    <tr>
+                        <td>@user.Name @user.Surname</td>
+                        <td>@user.Email</td>
+                        @if (user.IsSubscriber)
+                        {
+                            <td>Да</td>
+
+                        }
+                        else
+                        {
+                            <td>Нет</td>
+                        }
+                        @if (user.IsBanned)
+                        {
+                            <td><button style="color:black;" onclick="changeBannedStatus(this)" value="@user.Id">Разбанить</button></td>
+                        }
+                        else
+                        {
+                            <td><button style="color:black;" onclick="changeBannedStatus(this)" value="@user.Id">Забанить</button></td>
+                        }
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    function changeBannedStatus(element) {
+        $.post("@Url.Action("ChangeBannedStatus","Admin")" + "?userId=" + element.value,
+            function (returnedData) {
+                console.log(element.innerHTML)
+                if (element.innerHTML == 'Забанить') {
+                    element.innerHTML = 'Разбанить';
+                } else {
+                    element.innerHTML = 'Забанить';
+                }
+            });
+    }
+</script>
