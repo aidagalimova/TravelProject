@@ -45,3 +45,5 @@ C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Cities.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\AddCity.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Route\SearchRoute.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Route\RouteResult.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\CityRating.cshtml.g.cs

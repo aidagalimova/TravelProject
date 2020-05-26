@@ -82,6 +82,29 @@ namespace TravelWebApp.Controllers
             return View(cr);
         }
 
+        public async Task<IActionResult> CityRating()
+        {
+            var result =new List<CityModelRating>();
+            foreach(var t in _context.Cities.AsEnumerable())
+            {
+                var cm = new CityModelRating();
+                cm.CityId = t.Id;
+                cm.City = t.Name;
+                if (_context.Ratings.Any(c => c.CityId == t.Id))
+                {
+                    cm.AverageCount = _context.Ratings.Where(c => c.CityId == t.Id).Average(c => c.Mark);
+                }
+                cm.IsVisited = _context.Ratings.Any(c => c.CityId == t.Id && c.UserId == Request.Cookies["UserId"]);
+                if (cm.IsVisited)
+                {
+                    cm.UserMark = _context.Ratings.FirstOrDefault(c => c.CityId == t.Id && c.UserId == Request.Cookies["UserId"]).Mark;
+                }
+                result.Add(cm);
+            }
+            return View(result);
+        }
+
+
         private bool CityExists(int id)
         {
             return _context.Cities.Any(e => e.Id == id);
@@ -91,5 +114,15 @@ namespace TravelWebApp.Controllers
     {
         public int mark { get; set; }
         public int cityId { get; set; }
+    }
+
+    public class CityModelRating
+    {
+        public int CityId;
+        public string City;
+        public double AverageCount;
+        public bool IsVisited;
+        public int UserMark;
+
     }
 }

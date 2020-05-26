@@ -24,10 +24,11 @@ namespace TravelWebApp.Controllers
         private readonly string adminMail;
         private readonly string adminPassword;
         private readonly TravelService _travelService;
+        private readonly YandexApiService _yandexApiService;
 
-
-        public AdminController(ApplicationContext context, TravelService travelService)
+        public AdminController(ApplicationContext context, TravelService travelService,YandexApiService yandexApiService)
         {
+            _yandexApiService = yandexApiService;
             adminMail = "travelwebproject1@gmail.com";
             adminPassword = "15171517Travel1";
             _context = context;
@@ -52,7 +53,7 @@ namespace TravelWebApp.Controllers
 
         public async Task<IActionResult> Users()
         {
-            var users = await _context.Users.ToListAsync();
+            var users = await _context.Users.Where(x=> x.Email != "admin@mail.ru").ToListAsync();
             var m = new UserListModel();
             m.users = users;
 
@@ -104,6 +105,52 @@ namespace TravelWebApp.Controllers
             }
             _context.Add(c);
             await _context.SaveChangesAsync();
+            Console.WriteLine(c.Id);
+            Console.WriteLine("!@#!@#");
+            foreach(var cc in _context.Cities.AsEnumerable())
+            {
+                if(cc.Id != c.Id)
+                {
+                    var k = _yandexApiService.GetScheduleBetweenStations(c.YandexCode, cc.YandexCode);
+                    var minDist = 0;
+                    foreach (var segment in k["segments"])
+                    {
+                        if (minDist==0 || segment["duration"] < minDist)
+                        {
+                            minDist = int.Parse(segment["duration"].ToString().Split(".")[0]);
+                        }
+                    }
+                    if (minDist != 0)
+                    {
+                        var r = new Route();
+                        r.CityFromId = c.Id;
+                        r.CityToId = cc.Id;
+                        r.Duration = minDist;
+                        _context.Add(r);
+                    }
+
+                    k = _yandexApiService.GetScheduleBetweenStations(cc.YandexCode, c.YandexCode);
+                    minDist = 0;
+                    foreach (var segment in k["segments"])
+                    {
+                        if (minDist == 0 || segment["duration"] < minDist)
+                        {
+                            minDist = int.Parse(segment["duration"].ToString().Split(".")[0]);
+                        }
+                    }
+                    if (minDist != 0)
+                    {
+                        var r = new Route();
+                        r.CityFromId = cc.Id;
+                        r.CityToId = c.Id;
+                        r.Duration = minDist;
+                        _context.Add(r);
+                    }
+                }
+            }
+            await _context.SaveChangesAsync();
+
+
             return RedirectToAction(nameof(Index));
         }
 

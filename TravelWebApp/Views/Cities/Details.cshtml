@@ -12,7 +12,7 @@
     <div class="w3lsnavigation">
         <nav class="navbar-default agilehovereffect wthreehovereffect">
             <div class="navbar-header navbar-left">
-                <li><a class="scroll" href=""><span>ПРОФИЛЬ</span></a></li>
+                <li><a class="scroll" href="/Profile/Home"><span>ПРОФИЛЬ</span></a></li>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
@@ -26,7 +26,7 @@
                     <ul class="nav navbar-nav-right">
                     
                         <li><a class="scroll" href="/Route/SearchRoute"><span>НАЙТИ МАРШРУТ</span></a></li>
-                        <li><a class="scroll" href="#wthreereviews"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
+                        <li><a class="scroll" href="/Cities/CityRating"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
                         <li style="float: left; margin-top: 4%;">
                             <form action="/search/" target="_blank" class="form-search">
                                 <input type="search" name="text" id="mysearch" placeholder="Поиск города" style="color: white">
@@ -62,55 +62,55 @@
                 }
                 @if (Model.Rating != null && Model.Rating.Mark == 5)
                 {
-                    <input id="star-4" type="radio" name="reviewStars" checked onclick="AJAXstar(5,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-4" type="radio" name="reviewStars" checked onclick="AJAXstar(5,@Model.City.Id)" />
                 }
                 else
                 {
-                    <input id="star-4" type="radio" name="reviewStars" onclick="AJAXstar(4,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-4" type="radio" name="reviewStars" onclick="AJAXstar(4,@Model.City.Id)" />
                 }
-                <label title="gorgeous" for="star-4"></label>
+                <label title="gorgeous" for="(@Model.City.Id)-4"></label>
                 @if (Model.Rating != null && Model.Rating.Mark == 4)
                 {
-                    <input id="star-3" type="radio" name="reviewStars" checked onclick="AJAXstar(4,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-3" type="radio" name="reviewStars" checked onclick="AJAXstar(4,@Model.City.Id)" />
 
                 }
                 else
                 {
-                    <input id="star-3" type="radio" name="reviewStars" onclick="AJAXstar(4,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-3" type="radio" name="reviewStars" onclick="AJAXstar(4,@Model.City.Id)" />
 
                 }
-                <label title="good" for="star-3"></label>
+                <label title="good" for="(@Model.City.Id)-3"></label>
                 @if (Model.Rating != null && Model.Rating.Mark == 3)
                 {
-                    <input id="star-2" type="radio" name="reviewStars" checked onclick="AJAXstar(3,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-2" type="radio" name="reviewStars" checked onclick="AJAXstar(3,@Model.City.Id)" />
 
                 }
                 else
                 {
-                    <input id="star-2" type="radio" name="reviewStars" onclick="AJAXstar(3,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-2" type="radio" name="reviewStars" onclick="AJAXstar(3,@Model.City.Id)" />
 
                 }
-                <label title="regular" for="star-2"></label>
+                <label title="regular" for="(@Model.City.Id)-2"></label>
                 @if (Model.Rating != null && Model.Rating.Mark == 2)
                 {
-                    <input id="star-1" type="radio" name="reviewStars" checked onclick="AJAXstar(2,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-1" type="radio" name="reviewStars" checked onclick="AJAXstar(2,@Model.City.Id)" />
                 }
                 else
                 {
-                    <input id="star-1" type="radio" name="reviewStars" onclick="AJAXstar(2,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-1" type="radio" name="reviewStars" onclick="AJAXstar(2,@Model.City.Id)" />
 
                 }
-                <label title="poor" for="star-1"></label>
+                <label title="poor" for="(@Model.City.Id)-1"></label>
                 @if (Model.Rating != null && Model.Rating.Mark == 1)
                 {
-                    <input id="star-0" type="radio" name="reviewStars" checked onclick="AJAXstar(1,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-0" type="radio" name="reviewStars" checked onclick="AJAXstar(1,@Model.City.Id)" />
                 }
                 else
                 {
-                    <input id="star-0" type="radio" name="reviewStars" onclick="AJAXstar(1,@Model.City.Id)" />
+                    <input id="(@Model.City.Id)-0" type="radio" name="reviewStars" onclick="AJAXstar(1,@Model.City.Id)" />
 
                 }
-                <label title="bad" for="star-0"></label>
+                <label title="bad" for="(@Model.City.Id)-0"></label>
             </div>
             <p style="width: 67%; font-size: 22px; float: left; color: white; height: 34vh;">@Html.DisplayFor(model => model.City.Description)</p><br><hr>
             <div id="map" style=" width: 67%; position: relative; overflow: hidden; height: 40vh;"></div>
@@ -128,12 +128,12 @@
 	function init() {
 		var mapOptions = {
 			zoom: 11,
-            center: new google.maps.LatLng(@Model.City.Latitude.ToString().Replace(",", "."), @Model.City.Longitude.ToString().Replace(",", "."))
+            center: new google.maps.LatLng(@Model.City.Longitude.ToString().Replace(",", "."), @Model.City.Latitude.ToString().Replace(",", "."))
 		};
 		var mapElement = document.getElementById('map');
 		var map = new google.maps.Map(mapElement, mapOptions);
 		var marker = new google.maps.Marker({
-            position: new google.maps.LatLng(@Model.City.Latitude.ToString().Replace(",", "."), @Model.City.Longitude.ToString().Replace(",", ".")),
+            position: new google.maps.LatLng(@Model.City.Longitude.ToString().Replace(",", "."), @Model.City.Latitude.ToString().Replace(",", ".")),
 			map: map,
 		});
 	}

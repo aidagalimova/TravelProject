@@ -1,5 +1,7 @@
-﻿@{
-    ViewData["Title"] = "Поиск маршрута";
+﻿@model List<TravelWebApp.Controllers.RouteModel>
+
+@{
+    ViewData["Title"] = "RouteResult";
 }
 
 <div class="agileheader" id="agileitshome">
@@ -39,26 +41,34 @@
 
 </div>
 
-
 <div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh;">
     <div class="container">
-        <h2>Найти маршрут</h2>
-        <form asp-action="RouteResult" method="post">
-            <div class="form-group">
-                <label for="formGroupExampleInput">Город отправления</label>
-                <input type="text" name="cityFrom" class="form-control" id="formGroupExampleInput" placeholder="Введите город">
-            </div>
-            <div class="form-group">
-                <label for="formGroupExampleInput2">Города назначения</label>
-                <input type="text" class="form-control" name="cityTo" id="formGroupExampleInput2" placeholder="Введите город">
-            </div>
-
-            <button type="submit" class="btn btn-dark" style="width: 30%; margin-left: 35%;">Найти маршрут</button>
-
-        </form>
+        <h2>Ваш маршрут</h2>
+        <table class="table" style="color: white; font-size: 25px;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Маршрут</th>
+                    <th scope="col">Пункт отправления</th>
+                    <th scope="col">Пункт назначения</th>
+                    <th scope="col">Перевозчик</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var r in @Model)
+                {
+                    <tr>
+                        <th>@r.ShortTitle</th>
+                        <td>@r.Departure</td>
+                        <td>@r.Arrival</td>
+                        <td><a href="@r.URL" style="color: white"><u>@r.Company</u></a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
     </div>
 </div>
+
 <script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">

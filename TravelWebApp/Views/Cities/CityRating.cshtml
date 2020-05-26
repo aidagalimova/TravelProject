@@ -1,0 +1,185 @@
+﻿@model List<TravelWebApp.Controllers.CityModelRating>
+@{
+    ViewData["Title"] = "Рейтинг городов";
+}
+
+<div class="agileheader" id="agileitshome">
+
+    <!-- Navigation -->
+    <div class="w3lsnavigation">
+        <nav class="navbar-default agilehovereffect wthreehovereffect">
+            <div class="navbar-header navbar-left">
+                <li><a class="scroll" href="/Profile/Home"><span>ПРОФИЛЬ</span></a></li>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <div class="collapse navbar-collapse navbar-nav-left" id="bs-example-navbar-collapse-1" style="float: right!important">
+                <nav class="link-effect-2" id="link-effect-2">
+                    <ul class="nav navbar-nav-right">
+                        <li><a class="scroll" href="/Route/SearchRoute"><span>НАЙТИ МАРШРУТ</span></a></li>
+                        <li><a class="scroll" href="/Cities/CityRating"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
+                        <li style="float: left; margin-top: 4%;">
+                            <form action="/search/" target="_blank" class="form-search">
+                                <input type="search" name="text" id="mysearch" placeholder="Поиск города" style="color: white">
+                            </form>
+                            <div id="result-search" class="search_result"></div>
+                        </li>
+                        <li><a class="scroll" href="/Identity/Account/Logout"><span>ВЫЙТИ</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+    <!-- //Navigation -->
+    <!-- //Slider -->
+
+</div>
+<div class="w3lsaboutaits" id="w3lsaboutaits" style="height: 100vh;">
+    <div class="container">
+        <h2>Рейтинг городов</h2>
+        <input type="checkbox" class="form-check-input" id="exampleCheck1" onclick="shadow()">
+        <label class="form-check-label" for="exampleCheck1" style="font-size: 25px;">Скрыть посещённые города</label>
+        <table class="table" id="myTable" style="color: white; font-size: 20px;">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col" onclick="sortTable(0)">Город</th>
+                    <th scope="col" onclick="sortTable(1)">Ср. оценка</th>
+                    <th scope="col" onclick="sortTable(2)">Ваша оценка</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var city in @Model)
+                {
+                <tr>
+                    <td>@city.City</td>
+                    @if (city.AverageCount != 0)
+                    {
+                        <td>@city.AverageCount</td>
+                    }
+                    else
+                    {
+                        <td>Ещё никто не оценил этот город</td>
+                    }
+                    @if (city.UserMark != 0)
+                    {
+                        <td>@city.UserMark</td>
+                    }
+                    else
+                    {
+                        <td>Вы ещё не оценили этот город</td>
+                    }
+                    <td style="display:none">@city.IsVisited</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<script src="https://yastatic.net/jquery/3.3.1/jquery.min.js"></script>
+
+<script type="text/javascript">
+				$(document).ready(function() {
+					var defaults = {
+						containerID: 'toTop',
+						containerHoverID: 'toTopHover',
+						scrollSpeed: 100,
+						easingType: 'linear',
+					};
+                });
+
+    $('#mysearch').on('keyup', function () {
+        var text = $(this).val();
+        $('#result-search').html('');
+        if (text.length > 2) {
+            $.post("@Url.Action("SearchCity","Cities")" + "?text=" + text,
+                function (returnedData) {
+                    result = ''
+                    console.log(returnedData)
+                    for (var c of returnedData) {
+                        var t = '<a href="/Cities/Details/' + c.id + '">' + c.name + ' ' + c.country.name + '</a><br>';
+                        result += t;
+                    }
+                    $('#result-search').html(result);
+                });
+        }
+    });
+    function AJAXstar(count, cityId) {
+        sendAjaxPostRequest("@Url.Action("AddRating","Cities")", count, cityId)
+    }
+    function sendAjaxPostRequest(url, mark, cityId) {
+        $.post(url + '?mark=' + mark + '&cityId=' + cityId,
+            function (returnedData) {
+                console.log(returnedData);
+            });
+    }
+    function sortTable(rr) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("myTable");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("TD")[rr];
+                y = rows[i + 1].getElementsByTagName("TD")[rr];
+                // Check if the two rows should switch place:
+                if (rr != 0) {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    function shadow() {
+        table = document.getElementById("myTable");
+        rows = table.rows;
+        for (i = 1; i < (rows.length); i++) {
+            if (rows[i].getElementsByTagName("TD")[3].innerHTML == 'True') {
+                if (document.getElementById('exampleCheck1').checked) {
+                    rows[i].style.display = 'none';
+                } else {
+                    rows[i].style.display = '';
+                }
+            }
+            else {
+                if (document.getElementById('exampleCheck1').checked) {
+                    rows[i].style.display = '';
+
+                } else {
+                    rows[i].style.display = '';
+                }
+            }
+        }
+    }
+</script>

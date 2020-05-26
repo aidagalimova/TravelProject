@@ -11,6 +11,7 @@ namespace TravelWebApp.Data
         public DbSet<Country> Countries { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Rating> Ratings { get; set; }
+        public DbSet<Route> Routes { get; set; }
 
         public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
         {

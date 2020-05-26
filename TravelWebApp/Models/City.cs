@@ -13,8 +13,6 @@ namespace TravelWebApp.Models
         public string Description { get; set; }
 
 
-        public IEnumerable<string> AvailableRoutes { get; set; }
-
 
         public double Longitude { get; set; }
 

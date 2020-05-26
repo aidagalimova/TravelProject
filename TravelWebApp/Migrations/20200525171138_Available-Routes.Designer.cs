@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TravelWebApp.Data;
 
 namespace TravelWebApp.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [Migration("20200525171138_Available-Routes")]
+    partial class AvailableRoutes
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,6 +156,8 @@ namespace TravelWebApp.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("CityId");
+
                     b.Property<int>("CountryId");
 
                     b.Property<string>("Description");
@@ -169,6 +173,8 @@ namespace TravelWebApp.Migrations
                     b.Property<string>("YandexCode");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CityId");
 
                     b.HasIndex("CountryId");
 
@@ -230,23 +236,6 @@ namespace TravelWebApp.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Ratings");
-                });
-
-            modelBuilder.Entity("TravelWebApp.Models.Route", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CityFromId");
-
-                    b.Property<int>("CityToId");
-
-                    b.Property<int>("Duration");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Routes");
                 });
 
             modelBuilder.Entity("TravelWebApp.Models.User", b =>
@@ -363,6 +352,10 @@ namespace TravelWebApp.Migrations
 
             modelBuilder.Entity("TravelWebApp.Models.City", b =>
                 {
+                    b.HasOne("TravelWebApp.Models.City")
+                        .WithMany("AvailableRoutes")
+                        .HasForeignKey("CityId");
+
                     b.HasOne("TravelWebApp.Models.Country", "Country")
                         .WithMany()
                         .HasForeignKey("CountryId")

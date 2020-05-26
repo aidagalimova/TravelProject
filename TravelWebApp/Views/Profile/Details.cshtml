@@ -26,7 +26,7 @@
                 <nav class="link-effect-2" id="link-effect-2">
                     <ul class="nav navbar-nav-right">
                         <li><a class="scroll" href="/Route/SearchRoute"><span>НАЙТИ МАРШРУТ</span></a></li>
-                        <li><a class="scroll" href="#wthreereviews"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
+                        <li><a class="scroll" href="/Cities/CityRating"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>
                         <li style="float: left; margin-top: 4%;">
                             <form action="/search/" target="_blank" class="form-search">
                                 <input type="search" name="text" id="mysearch" placeholder="Поиск города" style="color: white">
@@ -61,57 +61,57 @@
                             </th>
                         </tr>
                         <tr>
-                            @if (city_rating != null && city_rating.Mark == 5)
+                            @if (@city_rating != null && @city_rating.Mark == 5)
                             {
-                                <input id="star-4" type="radio" name="reviewStars" checked onclick="AJAXstar(5,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-4" type="radio" name="reviewStars" checked onclick="AJAXstar(5,@city_rating.City.Id)" />
                             }
                             else
                             {
-                                <input id="star-4" type="radio" name="reviewStars" onclick="AJAXstar(4,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-4" type="radio" name="reviewStars" onclick="AJAXstar(4,@city_rating.City.Id)" />
                             }
-                            <label title="gorgeous" for="star-4"></label>
-                            @if (city_rating != null && city_rating.Mark == 4)
+                            <label title="gorgeous" for="(@city_rating.City.Id)-4"></label>
+                            @if (@city_rating != null && @city_rating.Mark == 4)
                             {
-                                <input id="star-3" type="radio" name="reviewStars" checked onclick="AJAXstar(4,city_rating.City.Id)" />
-
-                            }
-                            else
-                            {
-                                <input id="star-3" type="radio" name="reviewStars" onclick="AJAXstar(4,city_rating.City.Id)" />
-
-                            }
-                            <label title="good" for="star-3"></label>
-                            @if (city_rating != null && city_rating.Mark == 3)
-                            {
-                                <input id="star-2" type="radio" name="reviewStars" checked onclick="AJAXstar(3,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-3" type="radio" name="reviewStars" checked onclick="AJAXstar(4,@city_rating.City.Id)" />
 
                             }
                             else
                             {
-                                <input id="star-2" type="radio" name="reviewStars" onclick="AJAXstar(3,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-3" type="radio" name="reviewStars" onclick="AJAXstar(4,@city_rating.City.Id)" />
 
                             }
-                            <label title="regular" for="star-2"></label>
-                            @if (city_rating != null && city_rating.Mark == 2)
+                            <label title="good" for="(@city_rating.City.Id)-3"></label>
+                            @if (@city_rating != null && @city_rating.Mark == 3)
                             {
-                                <input id="star-1" type="radio" name="reviewStars" checked onclick="AJAXstar(2,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-2" type="radio" name="reviewStars" checked onclick="AJAXstar(3,@city_rating.City.Id)" />
+
                             }
                             else
                             {
-                                <input id="star-1" type="radio" name="reviewStars" onclick="AJAXstar(2,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-2" type="radio" name="reviewStars" onclick="AJAXstar(3,@city_rating.City.Id)" />
 
                             }
-                            <label title="poor" for="star-1"></label>
-                            @if (city_rating != null && city_rating.Mark == 1)
+                            <label title="regular" for="(@city_rating.City.Id)-2"></label>
+                            @if (@city_rating != null && @city_rating.Mark == 2)
                             {
-                                <input id="star-0" type="radio" name="reviewStars" checked onclick="AJAXstar(1,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-1" type="radio" name="reviewStars" checked onclick="AJAXstar(2,@city_rating.City.Id)" />
                             }
                             else
                             {
-                                <input id="star-0" type="radio" name="reviewStars" onclick="AJAXstar(1,city_rating.City.Id)" />
+                                <input id="(@city_rating.City.Id)-1" type="radio" name="reviewStars" onclick="AJAXstar(2,@city_rating.City.Id)" />
 
                             }
-                            <label title="bad" for="star-0"></label>
+                            <label title="poor" for="(@city_rating.City.Id)-1"></label>
+                            @if (@city_rating != null && @city_rating.Mark == 1)
+                            {
+                                <input id="(@city_rating.City.Id)-0" type="radio" name="reviewStars" checked onclick="AJAXstar(1,@city_rating.City.Id)" />
+                            }
+                            else
+                            {
+                                <input id="(@city_rating.City.Id)-0" type="radio" name="reviewStars" onclick="AJAXstar(1,@city_rating.City.Id)" />
+
+                            }
+                            <label title="bad" for="(@city_rating.City.Id)-0"></label>
                         </tr>
                     </table>
                 </div>
