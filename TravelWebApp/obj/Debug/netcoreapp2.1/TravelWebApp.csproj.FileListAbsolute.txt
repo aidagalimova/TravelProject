@@ -38,7 +38,6 @@ C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewImports.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Areas\Identity\Pages\_ViewStart.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Shared\_LoginPartial.cshtml.g.cs
-C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\TravelWebApp.csproj.CoreCompileInputs.cache
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Profile\Details.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Index.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Admin\Users.cshtml.g.cs
@@ -47,3 +46,6 @@ C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Route\SearchRoute.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Route\RouteResult.cshtml.g.cs
 C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\Razor\Views\Cities\CityRating.cshtml.g.cs
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\bin\Debug\netcoreapp2.1\Microsoft.Azure.Cosmos.ServiceInterop.dll
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\bin\Debug\netcoreapp2.1\Cosmos.CRTCompat.dll
+C:\Users\Аида\source\repos\TravelWebApp\TravelWebApp\obj\Debug\netcoreapp2.1\TravelWebApp.csproj.CoreCompileInputs.cache

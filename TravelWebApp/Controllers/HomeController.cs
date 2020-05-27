@@ -53,7 +53,7 @@ namespace TravelWebApp.Controllers
             //    }
             //}
             //var values = JsonConvert.DeserializeObject<dynamic>(answer);
-            //foreach(var country in values["countries"])
+            //foreach (var country in values["countries"])
             //{
             //    var cntry = new MongoModels.Country();
             //    cntry.Regions = new List<string>();
@@ -62,7 +62,7 @@ namespace TravelWebApp.Controllers
             //    var codeCountry = new Code();
             //    codeCountry.Yandex_code = country["codes"]["yandex_code"];
             //    cntry.Codes.Add(_travelService.CreateCode(codeCountry));
-            //    foreach(var region in country["regions"])
+            //    foreach (var region in country["regions"])
             //    {
             //        var rg = new Region();
             //        rg.Settlements = new List<Settlement>();
@@ -71,7 +71,7 @@ namespace TravelWebApp.Controllers
             //        var codeRegion = new Code();
             //        codeRegion.Yandex_code = region["codes"]["yandex_code"];
             //        rg.Codes.Add(_travelService.CreateCode(codeRegion));
-            //        foreach(var settlement in region["settlements"])
+            //        foreach (var settlement in region["settlements"])
             //        {
             //            var st = new Settlement();
             //            st.Stations = new List<Station>();
@@ -80,7 +80,7 @@ namespace TravelWebApp.Controllers
             //            var codeSt = new Code();
             //            codeSt.Yandex_code = settlement["codes"]["yandex_code"];
             //            st.Codes.Add(_travelService.CreateCode(codeSt));
-            //            foreach(var station in settlement["stations"])
+            //            foreach (var station in settlement["stations"])
             //            {
             //                var stat = new Station();
             //                stat.Direction = station["direction"];
@@ -96,7 +96,7 @@ namespace TravelWebApp.Controllers
             //                st.Stations.Add(_travelService.CreateStation(stat));
             //            }
             //            rg.Settlements.Add(_travelService.CreateSettlement(st));
-            //        }    
+            //        }
             //        cntry.Regions.Add(_travelService.CreateRegion(rg).Id);
             //    }
 

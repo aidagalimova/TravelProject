@@ -96,7 +96,7 @@ using TravelWebApp.Models;
             ");
             EndContext();
             BeginContext(1471, 122, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "3fa483be40824427a37025421970c764", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0c90f32c17784a83a66d27f8dcba1404", async() => {
                 BeginContext(1562, 27, true);
                 WriteLiteral("<span>Добавить город</span>");
                 EndContext();

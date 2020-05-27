@@ -88,7 +88,7 @@ using TravelWebApp.Models;
                             ");
             EndContext();
             BeginContext(1353, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "e4ab8350dc4849efadb0b885319c3bfe", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a30c12172c794d40a72b8fa3ba9344b8", async() => {
                 BeginContext(1413, 159, true);
                 WriteLiteral("\r\n                                <input type=\"search\" name=\"text\" id=\"mysearch\" placeholder=\"Поиск города\" style=\"color: white\">\r\n                            ");
                 EndContext();
@@ -131,7 +131,7 @@ using TravelWebApp.Models;
         ");
             EndContext();
             BeginContext(2104, 713, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "f3273e07d36343f3b06e86bf4c7cf1f7", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "491e1ddf3f1249049def9e8d1be17934", async() => {
                 BeginContext(2149, 661, true);
                 WriteLiteral(@"
             <div class=""form-group"">

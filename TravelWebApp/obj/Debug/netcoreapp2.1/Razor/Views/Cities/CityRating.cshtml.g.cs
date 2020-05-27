@@ -86,7 +86,7 @@ using TravelWebApp.Models;
                             ");
             EndContext();
             BeginContext(1409, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "0f5d36cb01aa42ccafc799d6997ed578", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "86593b1220644322bb065719cb0cb19e", async() => {
                 BeginContext(1469, 159, true);
                 WriteLiteral("\r\n                                <input type=\"search\" name=\"text\" id=\"mysearch\" placeholder=\"Поиск города\" style=\"color: white\">\r\n                            ");
                 EndContext();

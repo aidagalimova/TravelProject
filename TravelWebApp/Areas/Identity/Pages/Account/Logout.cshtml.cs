@@ -23,13 +23,30 @@ namespace TravelWebApp.Areas.Identity.Pages.Account
             _logger = logger;
         }
 
-        public void OnGet()
+        public async Task<IActionResult> OnGet()
         {
+            var returnUrl = Url.Content("/Identity/Account/Login");
+            await _signInManager.SignOutAsync();
+            var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
+            {
+                IsEssential = true
+            };
+            try
+            {
+                Response.Cookies.Delete("UserId", cookieOptions);
+                Response.Cookies.Delete("admin", cookieOptions);
+                _logger.LogInformation("User logged out.");
+            }
+            catch
+            {
+                _logger.LogInformation("Something happened");
+            }
+            return LocalRedirect(returnUrl);
         }
 
         public async Task<IActionResult> OnPost(string returnUrl = null)
         {
-            returnUrl = Url.Content("~/Identity/Account/Login");
+            returnUrl = Url.Content("/Identity/Account/Login");
             await _signInManager.SignOutAsync();
             var cookieOptions = new Microsoft.AspNetCore.Http.CookieOptions()
             {

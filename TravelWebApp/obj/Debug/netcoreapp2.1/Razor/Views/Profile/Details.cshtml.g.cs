@@ -87,7 +87,7 @@ using TravelWebApp.Models;
             WriteLiteral("></li>\r\n                        <li><a class=\"scroll\" href=\"/Cities/CityRating\"><span>РЕЙТИНГ ГОРОДОВ</span></a></li>\r\n                        <li style=\"float: left; margin-top: 4%;\">\r\n                            ");
             EndContext();
             BeginContext(1330, 226, false);
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "a8069bedefac4d69b9d526c72e9f4bb0", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "16a0b986d564413ab4ba452203143d53", async() => {
                 BeginContext(1390, 159, true);
                 WriteLiteral("\r\n                                <input type=\"search\" name=\"text\" id=\"mysearch\" placeholder=\"Поиск города\" style=\"color: white\">\r\n                            ");
                 EndContext();
